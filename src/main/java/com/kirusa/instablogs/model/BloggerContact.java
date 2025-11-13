@@ -11,7 +11,11 @@ public class BloggerContact {
 	@Id
 	private String contactId;
 
+	private String contactType;
+	private String countryCode;
 	private Long bloggerId;
-	private boolean isPrimary;
+	private Boolean isPrimary;
+	private String status;
+	private Boolean isVirtual;
 
 }

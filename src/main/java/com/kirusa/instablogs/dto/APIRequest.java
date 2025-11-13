@@ -69,4 +69,14 @@ public class APIRequest {
 
 	@JsonProperty("country_code")
 	private String countryCode;
+	
+	@JsonProperty("sim_country_iso")
+	private String simCountryIso;
+
+	@JsonProperty("login_name")
+	private String LoginName;
+	
+	@JsonProperty("app_type")
+	private String appType;
+	
 }

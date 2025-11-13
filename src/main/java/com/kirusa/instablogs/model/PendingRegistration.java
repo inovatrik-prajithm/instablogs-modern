@@ -47,14 +47,16 @@ public class PendingRegistration {
     private String displayName;
     private String appType;
     private String regSecureKey;
-    private Boolean signIn;
+    @Column(name = "is_sign_in", nullable = false)
+    private Boolean signIn = false;
     private Integer attempts;
     private LocalDateTime regDate;
     private LocalDateTime pinExpiry;
     private String sourceApp;
     private Integer locationCityId;
     private Integer locationStateId;
+	@Column(name = "emei_meid_esn", length = 20)
+    private String emeiMeidEsn;
+	private String pinSentBy;
 
-//    @Builder.Default
-//    private Integer deviceCnt = 0; // default value
 }
