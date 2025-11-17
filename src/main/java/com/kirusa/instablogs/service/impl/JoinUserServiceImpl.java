@@ -56,7 +56,7 @@ public class JoinUserServiceImpl {
         var network = networkSvc.resolveNodeNetwork(req.getSimNetworkOprMccMnc(),
                                                     req.getSimOprMccMnc(), country, req.getPhoneNumEdited());
 
-        var contact = contactRepo.findById(contactId).orElse(null);
+        var contact = contactRepo.findOneByContactId(contactId);
         var blogger = contact == null ? null : bloggerRepo.findById(contact.getBloggerId()).orElse(null);
 
         boolean newUser = true, newRMUser = true, chkReg = contact == null, signInOp = false;

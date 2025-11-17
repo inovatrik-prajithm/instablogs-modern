@@ -27,9 +27,48 @@ public class APIResponse {
 
     @JsonProperty("reg_id")
     private String regId;
+    
+    @JsonProperty("iv_user_id")
+    private Long ivUserId;
+    
+    @JsonProperty("iv_user_device_id")
+    private Long ivUserDeviceId;
+    
+    @JsonProperty("screen_name")
+    private String screenName;
+    
+    @JsonProperty("country_isd")
+    private String countryIsd;
+    
+    @JsonProperty("phone_len")
+    private Integer phoneLen;
+    
+    @JsonProperty("mqtt_host_name")
+    private String mqttHostName;
+    
+    @JsonProperty("mqtt_port_ssl")
+    private Integer mqttPortSsl;
+    
+    @JsonProperty("mqtt_user")
+    private String mqttUser;
+    
+    @JsonProperty("mqtt_password")
+    private String mqttPassword;
 
     @JsonProperty("reg_secure_key")
     private String regSecureKey;
+    
+    @JsonProperty("user_secure_key")
+    private String userSecureKey;
+    
+    @JsonProperty("login_id")
+    private String loginId;
+    
+    @JsonProperty("invite_url")
+    private String inviteUrl;
+    
+    @JsonProperty("inv_ref_code")
+    private String invRefCode;
 
     @JsonProperty("action")
     private String action;
@@ -76,6 +115,63 @@ public class APIResponse {
 
     @JsonProperty("chat_password")
     private String chatPassword;
+    
+    @JsonProperty("is_profilePic_set")
+    private Boolean isProfilePicSet;
+    
+    @JsonProperty("profile_pic_uri")
+    private String profilePicUri;
+    
+    @JsonProperty("thumbnail_profilePic_uri")
+    private String thumbnailProfilePicUri;
+    
+    @JsonProperty("facebook_connection")
+    private Boolean facebookConnection;
+    
+    @JsonProperty("twitter_connection")
+    private Boolean twitterConnection;
+    
+    @JsonProperty("fb_connected")
+    private Boolean fbConnected;
+    
+    @JsonProperty("tw_connected")
+    private Boolean twConnected;
+    
+    @JsonProperty("fb_post_enabled")
+    private Boolean fbPostEnabled;
+    
+    @JsonProperty("tw_post_enabled")
+    private Boolean twPostEnabled;
+    
+    @JsonProperty("vsms_allowed")
+    private Boolean vsmsAllowed;
+    
+    @JsonProperty("last_fetched_msg_id")
+    private Integer lastFetchedMsgId;
+    
+    @JsonProperty("last_fetched_contact_trno")
+    private Integer lastFetchedContactTrno;
+    
+    @JsonProperty("last_fetched_profile_trno")
+    private Integer lastFetchedProfileTrno;
+    
+    @JsonProperty("send_email_for_iv")
+    private Boolean sendEmailForIv;
+    
+    @JsonProperty("send_sms_for_iv")
+    private Boolean sendSmsForIv;
+    
+    @JsonProperty("send_email_for_vb")
+    private Boolean sendEmailForVb;
+    
+    @JsonProperty("send_sms_for_vb")
+    private Boolean sendSmsForVb;
+    
+    @JsonProperty("send_email_for_vsms")
+    private Boolean sendEmailForVsms;
+    
+    @JsonProperty("send_sms_for_vsms")
+    private Boolean sendSmsForVsms;
 
     // User contact info
     @JsonProperty("user_contacts")
@@ -102,7 +198,7 @@ public class APIResponse {
 
         @JsonProperty("blogger_id")
         private Long bloggerId;
-
+        
         @JsonProperty("is_primary")
         private boolean isPrimary;
 
@@ -111,5 +207,8 @@ public class APIResponse {
 
         @JsonProperty("is_virtual")
         private boolean isVirtual;
+
+        @JsonProperty("login_id")
+        private String loginId;
     }
 }

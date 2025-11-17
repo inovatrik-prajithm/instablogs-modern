@@ -6,7 +6,6 @@ import com.kirusa.instablogs.model.PendingRegistration;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.UUID;
@@ -18,22 +17,33 @@ public final class RegistrationSecurityUtil {
 
     private RegistrationSecurityUtil() {}
 
+    /**
+     * 🔐 Simplified version for local/integration testing.
+     * Generates a regSecureKey that includes the plain regId inside encrypted data,
+     * so that the verification flow can extract regId properly.
+     */
     public static String generateAdvancedRegSecureKey(PendingRegistration r, KvsmsNodeNetwork n) {
         try {
-            var cc = n != null ? n.getCountryCode() : "NA";
-            var ct = r.getContactType() != null ? r.getContactType() : "P";
+            var cc = (n != null ? n.getCountryCode() : "NA");
+            var ct = (r.getContactType() != null ? r.getContactType() : "P");
+
+            // 👇 Plain text content (regId is directly stored)
             var raw = "%d:%s:%s:%s:%d:%s:%s".formatted(
-                    r.getRegId(), r.getPin(), r.getContactId(),
-                    cc, Instant.now().toEpochMilli(), ct,
+                    r.getRegId(),
+                    r.getPin(),
+                    r.getContactId(),
+                    cc,
+                    Instant.now().toEpochMilli(),
+                    ct,
                     UUID.randomUUID().toString().replace("-", "")
             );
 
-            var hash = MessageDigest.getInstance("SHA-256").digest(raw.getBytes(StandardCharsets.UTF_8));
-            var aes = CryptoUtil.encrypt(Base64.getEncoder().encodeToString(hash), SECRET_KEY);
-            var sig = hmac((String) aes, HMAC_KEY); // 👈 added cast to String
+            // 👇 Direct encryption (no SHA-256 hashing)
+            var aes = CryptoUtil.encrypt(raw, SECRET_KEY);
+            var sig = hmac(aes, HMAC_KEY);
 
-            return Base64.getUrlEncoder().withoutPadding()
-                    .encodeToString((aes + "." + sig).getBytes(StandardCharsets.UTF_8));
+            // ✅ Return in dot-separated form
+            return aes + "." + sig;
 
         } catch (Exception e) {
             throw new RuntimeException("regSecureKey generation failed: " + e.getMessage(), e);
@@ -45,5 +55,20 @@ public final class RegistrationSecurityUtil {
         mac.init(new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "HmacSHA256"));
         return Base64.getUrlEncoder().withoutPadding()
                 .encodeToString(mac.doFinal(data.getBytes(StandardCharsets.UTF_8)));
+    }
+
+    /**
+     * Generate user secure key for existing user
+     */
+    public static String generateUserSecureKey(Long userId, String contactId, Long userDeviceId) {
+        if (userId == null || contactId == null || userDeviceId == null) {
+            throw new IllegalArgumentException("Invalid input for user secure key generation");
+        }
+        try {
+            String raw = userId + ":" + contactId + ":" + userDeviceId;
+            return CryptoUtil.encrypt(raw);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to generate userSecureKey: " + e.getMessage(), e);
+        }
     }
 }

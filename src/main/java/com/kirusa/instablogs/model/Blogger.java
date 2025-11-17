@@ -106,7 +106,7 @@ public class Blogger implements Serializable {
 	private Long lastBlogId;
 
 	@Column(name = "iv_device_cnt")
-    @Builder.Default
+	@Builder.Default
 	private Integer deviceCnt = 0;
 
 	@Column(name = "terms_accepted")
@@ -123,7 +123,53 @@ public class Blogger implements Serializable {
 
 	@Column(name = "is_reachme_user")
 	private Boolean isReachMeUser;
-	
+
 	@Column(name = "iv_signup_date")
 	private java.util.Date ivSignupDate;
+
+	@Column(name = "created_at")
+	private java.util.Date createdAt;
+
+	@Column(name = "updated_at")
+	private java.util.Date updatedAt;
+
+	@Column(name = "source_app_type")
+	private String sourceAppType;
+
+	@Column(name = "source_app")
+	private String sourceApp;
+
+	@Column(name = "updated_date")
+	private java.util.Date updatedDate;
+
+	@Column(name = "kvsms_node_id")
+	private Integer kvsmsNodeId;
+
+	@Column(name = "kvsms_network_id")
+	private Long kvsmsNetworkId;
+
+	@Column(name = "is_profile_pic_set")
+	private Boolean isProfilePicSet;
+
+	@Column(name = "profile_pic_uri")
+	private String profilePicUri;
+
+	@Column(name = "thumbnail_profile_pic_uri")
+	private String thumbnailProfilePicUri;
+
+	@Column(name = "facebook_connection")
+	private Boolean facebookConnection;
+
+	@Column(name = "twitter_connection")
+	private Boolean twitterConnection;
+
+	@Column(name = "fb_post_enabled")
+	private Boolean fbPostEnabled;
+
+	@Column(name = "tw_post_enabled")
+	private Boolean twPostEnabled;
+	
+	@Column(name = "referral_code", length = 6)
+	private String inviteRefCode;
+
 }

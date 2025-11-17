@@ -58,5 +58,20 @@ public class PendingRegistration {
 	@Column(name = "emei_meid_esn", length = 20)
     private String emeiMeidEsn;
 	private String pinSentBy;
+	
+	@Column(name = "iv_signup_date")
+	private java.util.Date ivSignupDate;
+	
+	@Column(name = "created_at")
+	private java.util.Date createdAt;
+
+	@Column(name = "updated_at")
+	private java.util.Date updatedAt;
+
+	@Column(name = "source_app_type")
+	private String sourceAppType;
+	
+    @Column(name = "last_attempt_date")
+    private LocalDateTime lastAttemptDate;
 
 }

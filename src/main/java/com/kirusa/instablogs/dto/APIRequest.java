@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class APIRequest {
 
+	@JsonProperty("reg_secure_key")
+	private String regSecureKey;
+	
 	@JsonProperty("app_secure_key")
 	private String appSecureKey;
 
@@ -78,5 +81,10 @@ public class APIRequest {
 	
 	@JsonProperty("app_type")
 	private String appType;
+	
+	private String pin;
+	
+	@JsonProperty("is_self_verified")
+	private Boolean isSelfVerified;
 	
 }
