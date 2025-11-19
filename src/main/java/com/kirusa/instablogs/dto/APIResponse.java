@@ -172,6 +172,27 @@ public class APIResponse {
     
     @JsonProperty("send_sms_for_vsms")
     private Boolean sendSmsForVsms;
+    
+    @JsonProperty("gender")
+    private String gender;
+    
+    @JsonProperty("about_me")
+    private String aboutMe;
+    
+    @JsonProperty("display_name")
+    private String displayName;
+    
+    @JsonProperty("blogger_type")
+    private String bloggerType;
+    
+    @JsonProperty("followers_cnt")
+    private Integer followersCnt;
+    
+    @JsonProperty("public_profile")
+    private Boolean publicProfile;
+    
+    @JsonProperty("followings_cnt")
+    private Integer followingsCnt;
 
     // User contact info
     @JsonProperty("user_contacts")
@@ -210,5 +231,6 @@ public class APIResponse {
 
         @JsonProperty("login_id")
         private String loginId;
+        
     }
 }

@@ -171,5 +171,11 @@ public class Blogger implements Serializable {
 	
 	@Column(name = "referral_code", length = 6)
 	private String inviteRefCode;
+	
+	@Column(name = "gender", length = 1)
+	private String gender;
+	
+	@Column(name = "about_me", length = 512)
+	String aboutMe;
 
 }

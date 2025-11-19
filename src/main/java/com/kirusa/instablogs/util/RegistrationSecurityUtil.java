@@ -71,4 +71,26 @@ public final class RegistrationSecurityUtil {
             throw new RuntimeException("Failed to generate userSecureKey: " + e.getMessage(), e);
         }
     }
+    
+    public static SecureKeyInfo decryptUserSecureKey(String secureKey) {
+        try {
+            // 🔐 Step 1: decrypt
+        	String decrypted = CryptoUtil.decrypt(secureKey);
+            // Example decrypted: "bloggerId:contactId:deviceId"
+
+            String[] parts = decrypted.split(":");
+            if (parts.length < 3)
+                throw new IllegalArgumentException("Invalid user_secure_key");
+
+            Long bloggerId = Long.valueOf(parts[0]);
+            String contactId = parts[1];
+            Long deviceId = Long.valueOf(parts[2]);
+
+            return new SecureKeyInfo(bloggerId, contactId, deviceId);
+
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Failed to decrypt user_secure_key: " + e.getMessage());
+        }
+    }
+
 }

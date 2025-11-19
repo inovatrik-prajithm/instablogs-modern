@@ -15,6 +15,9 @@ public class APIRequest {
 	
 	@JsonProperty("app_secure_key")
 	private String appSecureKey;
+	
+    @JsonProperty("user_secure_key")
+    private String userSecureKey;
 
 	@JsonProperty("client_os")
 	private String clientOs;
