@@ -1,10 +1,11 @@
 package com.kirusa.instablogs.dto;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -201,6 +202,10 @@ public class APIResponse {
 	// ------- Category Response (NEW) --------
 	@JsonProperty("category_list")
 	private List<CategoryItem> categoryList;
+	
+    
+    @JsonProperty("language_list")
+    private List<LanguageItem> languageList;
 
 	/**
 	 * Inner static class representing each user contact entry.
@@ -252,4 +257,29 @@ public class APIResponse {
 		@JsonProperty("category_desc")
 		private String categoryDesc;
 	}
+	
+	// ======================= LANGUAGE ITEM ===========================
+	@Data
+	@NoArgsConstructor
+	@AllArgsConstructor
+	@Builder
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+	public static class LanguageItem {
+
+	    @JsonProperty("country_code")
+	    private Integer countryCode;
+
+	    @JsonProperty("country_name")
+	    private String countryName;
+
+	    @JsonProperty("lang_code")
+	    private String langCode;
+
+	    @JsonProperty("lang_name")
+	    private String langName;
+
+	    @JsonProperty("lang_data")
+	    private Map<String, String> langData;
+	}
+
 }
